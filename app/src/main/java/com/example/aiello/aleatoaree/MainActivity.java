@@ -3,9 +3,9 @@ package com.example.aiello.aleatoaree;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.InputFilter;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,6 +17,8 @@ import java.util.ArrayList;
 // Le debut de l'application
 public class MainActivity extends AppCompatActivity {
 
+    int maxLenght = 38;
+    ArrayList<EditText> InputListe = new ArrayList<EditText>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,12 +29,13 @@ public class MainActivity extends AppCompatActivity {
         //Layout principal
         LinearLayout contentMain = (LinearLayout)findViewById(R.id.linearLayout1);
 
-        ArrayList<EditText> InputListe = new ArrayList<EditText>();
+
 
         EditText myEdit1 = new EditText(this);
         myEdit1.setWidth(200);
         myEdit1.setHeight(200);
         myEdit1.setHint("#1");
+        myEdit1.setFilters(new InputFilter[] {new InputFilter.LengthFilter(maxLenght)});
 
         EditText myEdit2 = new EditText(this);
         myEdit2.setWidth(500);
@@ -78,13 +81,59 @@ public class MainActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
+        //Item menu d'ajout de choix
         if (id == R.id.plus) {
             //return true;
-            Snackbar.make(this.findViewById(android.R.id.content), "plus", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
+            AjoutInput();
+        }
+
+        //Item menu de suppression du dernier choix
+        if (id == R.id.moins) {
+            //return true;
+            SupprimeInput();
         }
 
         return super.onOptionsItemSelected(item);
     }
+
+    //fonction qui permet d'ajouter des inputs
+    public void AjoutInput()
+    {
+
+        //Layout principal
+        LinearLayout contentMain = (LinearLayout)findViewById(R.id.linearLayout1);
+        EditText myEdit = new EditText(this);
+        myEdit.setWidth(200);
+        myEdit.setHeight(200);
+        myEdit.setHint("#x");
+        myEdit.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLenght)});
+
+        //on ajoute l'inpjut à la liste
+        InputListe.add(myEdit);
+        contentMain.addView(myEdit);
+
+
+
+    }
+
+    public void SupprimeInput()
+    {
+
+        //Layout principal
+        LinearLayout contentMain = (LinearLayout)findViewById(R.id.linearLayout1);
+
+        //si y a plus de 2 élements dans lal iste alors on supprime le dernier élements
+        if(InputListe.size()>2) {
+            //on supprime le dernier item de la vue
+            contentMain.removeView(InputListe.get(InputListe.size() - 1));
+            //puis on supprime le dernier item de la liste
+            InputListe.remove(InputListe.size() - 1);
+        }
+        else{
+            //sinon il se passe rien on affichera par la suite une snacky d'information "Il faut laisser 2 choix ! "
+        }
+
+    }
+
+
 }
