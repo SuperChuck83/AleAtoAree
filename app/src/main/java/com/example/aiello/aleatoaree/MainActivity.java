@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
         EditText myEdit = new EditText(this);
         myEdit.setWidth(200);
         myEdit.setHeight(200);
-        myEdit.setHint("#x");
+        myEdit.setHint("#"+ ((int) InputListe.size() + 1)); // le numéro de l'input est égale à la taille de la liste + 1
         myEdit.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLenght)});
 
         //on ajoute l'inpjut à la liste
