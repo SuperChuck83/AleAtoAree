@@ -79,9 +79,9 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.plus) {
             //return true;
-            Snackbar.make(this.findViewById(android.R.id.content), "Hello world", Snackbar.LENGTH_LONG)
+            Snackbar.make(this.findViewById(android.R.id.content), "plus", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
         }
 
