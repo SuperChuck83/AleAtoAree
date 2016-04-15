@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -136,6 +137,14 @@ public class MainActivity extends AppCompatActivity {
         InputListe.add(myEdit);
         contentMain.addView(myEdit);
 
+        //dès qu'on ajoute un edit text on scroll la scrollview tout en bas !
+        final ScrollView sv = (ScrollView)findViewById(R.id.scrollView);
+        sv.post(new Runnable() {
+            @Override
+            public void run() {
+                sv.fullScroll(View.FOCUS_DOWN);
+            }
+        });
 
     }
 
