@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         myEdit2.setWidth(500);
         myEdit2.setHeight(200);
         myEdit2.setHint("#2");
+        myEdit2.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLenght)});
 
         //on ajoute les 2 inputs de bases obligatoires
         InputListe.add(myEdit1);
@@ -54,16 +55,28 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-
         /*** Gestion du bouton flotant***/
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Snackbar.make(view, "Hello world", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-                startActivity(new Intent(MainActivity.this, Resultat.class));
+
+                ArrayList<String> ListeChoixUser = new ArrayList<String>();
+                for (EditText item : InputListe) { //pour chaque item de la liste d'input on l'ajoute à la liste ListeChoixUser le choix de l'utilisateur
+                   if(item.getText().toString().length()!=0 )
+                   {
+                       ListeChoixUser.add(item.getText().toString());
+                   }
+                   else
+                   {
+                       ListeChoixUser.add(item.getHint().toString());
+
+                    }
+                }
+
+                Intent intent = new Intent (MainActivity.this, Resultat.class);
+                intent.putExtra("ListeChoixUser", ListeChoixUser);
+                startActivity(intent);
 
             }
         });
@@ -107,17 +120,13 @@ public class MainActivity extends AppCompatActivity {
         EditText myEdit = new EditText(this);
         myEdit.setWidth(200);
         myEdit.setHeight(200);
-        myEdit.setHint("#"+ ((int) InputListe.size() + 1)); // le numéro de l'input est égale à la taille de la liste + 1
+        myEdit.setHint("#" + ((int) InputListe.size() + 1)); // le numéro de l'input est égale à la taille de la liste + 1
         myEdit.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLenght)});
 
         //on ajoute l'inpjut à la liste
         InputListe.add(myEdit);
         contentMain.addView(myEdit);
 
-        Snackbar snackbar = Snackbar
-                .make(contentMain, ""+ InputListe.get(0).getText(), Snackbar.LENGTH_LONG);
-
-        snackbar.show();
 
     }
 
@@ -135,12 +144,9 @@ public class MainActivity extends AppCompatActivity {
             InputListe.remove(InputListe.size() - 1);
         }
         else{
-
-
-
-
+            //message d'erreur Erreur du choix "il faut saisir deux choix !"
             Snackbar snackbar = Snackbar
-                    .make(contentMain, "hello", Snackbar.LENGTH_LONG);
+                    .make(contentMain, getResources().getString(R.string.ErreurChoix), Snackbar.LENGTH_LONG);
 
             snackbar.show();
         }
