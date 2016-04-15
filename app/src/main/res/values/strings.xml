@@ -3,4 +3,5 @@
     <string name="action_settings">Settings</string>
     <string name="Hello">Hello world !  </string>
     <string name="ErreurChoix">You need two choices to randomize !</string>
+    <string name="banner_ad_unit_id">ca-app-pub-7606375902474524/3553085491</string>
 </resources>

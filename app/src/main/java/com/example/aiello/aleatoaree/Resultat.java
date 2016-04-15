@@ -5,6 +5,9 @@ import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Random;
@@ -19,6 +22,10 @@ public class Resultat extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resultat);
 
+        /* Gestion publicitaire */
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         //Textview dans le cercle
         TextView TextViewCircle = (TextView)findViewById(R.id.textView);
@@ -47,9 +54,6 @@ public class Resultat extends AppCompatActivity {
             }
 
         });
-
-
-
 
 
     }
