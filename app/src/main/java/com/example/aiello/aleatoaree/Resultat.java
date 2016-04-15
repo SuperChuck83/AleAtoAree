@@ -26,6 +26,7 @@ public class Resultat extends AppCompatActivity {
         AdView mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+        mAdView.bringToFront(); //on met la pub en avant des autres éléments
 
         //Textview dans le cercle
         TextView TextViewCircle = (TextView)findViewById(R.id.textView);
