@@ -1,4 +1,4 @@
-package com.example.aiello.aleatoaree;
+package com.andro.aiello.aleatoaree;
 
 import android.content.Intent;
 import android.os.Bundle;
