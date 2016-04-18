@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.aiello.aleatoaree.Resultat">
+    <item
+        android:id="@+id/Son"
+        android:orderInCategory="100"
+        android:title="Read result"
+        android:icon="@android:drawable/ic_lock_silent_mode_off"
+        app:showAsAction="always" />
+
+
+
+</menu>

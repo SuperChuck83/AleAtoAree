@@ -162,11 +162,19 @@ public class MainActivity extends AppCompatActivity {
             InputListe.remove(InputListe.size() - 1);
         }
         else{
-            //message d'erreur Erreur du choix "il faut saisir deux choix !"
-            Snackbar snackbar = Snackbar
-                    .make(contentMain, getResources().getString(R.string.ErreurChoix), Snackbar.LENGTH_LONG);
 
-            snackbar.show();
+            //si la deuxieme input n'est pas vide on la vide
+            for (EditText item : InputListe) { //pour chaque item de la liste d'input on l'ajoute à la vue
+                 item.setText("");
+
+            }
+
+                //message d'erreur Erreur du choix "il faut saisir deux choix !"
+                Snackbar snackbar = Snackbar
+                        .make(contentMain, getResources().getString(R.string.ErreurChoix), Snackbar.LENGTH_LONG);
+
+                snackbar.show();
+
         }
 
     }
